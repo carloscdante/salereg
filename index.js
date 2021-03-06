@@ -37,6 +37,7 @@ const argv = yargs
         }
     })
     .command('list', 'List all sales, ranked by seller with highest to lowest amount sold.', {})
+    .command('rank', 'Displays the seller ranking.', {})
     .command('add', 'Adds a sale to the database.', {
         date: {
             description: 'Date of the given sale.',
@@ -105,6 +106,10 @@ const argv = yargs
 
     if (argv._.includes('list')) {
         utils.list()
+    }
+
+    if (argv._.includes('rank')) {
+        utils.rank()
     }
 
     if (argv._.includes('initialize')) {
