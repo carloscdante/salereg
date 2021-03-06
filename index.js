@@ -9,6 +9,33 @@ let utils       = require('./lib/utils'),
 mongoose.connect("mongodb://localhost/salesreg", { useNewUrlParser: true, useUnifiedTopology: true });
 
 const argv = yargs
+    .command('initialize', 'Initializes 5 sellers and store them into the database.', {
+        s1: {
+            description: 'Full name of the first seller (e.g "John Smith")',
+            alias: '1',
+            type: 'number',
+        },
+        s2: {
+            description: 'Full name of the second seller (e.g "John Smith")',
+            alias: '2',
+            type: 'string',
+        },
+        s3: {
+            description: 'Full name of the third seller (e.g "John Smith")',
+            alias: '3',
+            type: 'string',
+        },
+        s4: {
+            description: 'Full name of the fourth seller (e.g "John Smith")',
+            alias: '4',
+            type: 'string',
+        },
+        s5: {
+            description: 'Full name of the fifth seller (e.g "John Smith")',
+            alias: '5',
+            type: 'string',
+        }
+    })
     .command('list', 'List all sales, ranked by seller with highest to lowest amount sold.', {})
     .command('add', 'Adds a sale to the database.', {
         date: {
@@ -78,6 +105,16 @@ const argv = yargs
 
     if (argv._.includes('list')) {
         utils.list()
+    }
+
+    if (argv._.includes('initialize')) {
+        const s1 = argv._[2];
+        const s2 = argv._[4];
+        const s3 = argv._[6];
+        const s4 = argv._[8];
+        const s5 = argv._[10];
+
+        utils.initialize(s1, s2, s3, s4, s5)
     }
 
     if (argv._.includes('edit')) {
