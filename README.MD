@@ -59,6 +59,8 @@ Carlos Dante (carloscdante)
 
 [yargs](https://github.com/yargs/yargs)
 
+[MongoDB](https://github.com/mongodb/mongo)
+
 #### Code (Licensed under the GPLv2)
 
 [Github](https://github.com/carloscdante/salereg)
