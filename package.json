@@ -15,7 +15,6 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "mongoose": "^5.11.15",
-    "shelljs": "^0.8.4",
     "yargs": "^16.2.0"
   },
   "bin": {
