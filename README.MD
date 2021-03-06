@@ -47,6 +47,18 @@ Delete a sale like this:
 
 Where -c is the ID code of the sale.
 
+### Listing all sales
+
+List all sales (ranked by seller with the highest total sale value):
+
+`salereg list`
+
+### Displaying the ranking
+
+Display the seller ranking.
+
+`salereg rank`
+
 # Configuration
 The sales and sellers are saved to a MongoDB database. You can modify any default parameter by changing the code and running it with your own modifications.
 
