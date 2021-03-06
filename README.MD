@@ -1,63 +1,59 @@
-# Yankit
-### Folder Structure Macro Utility
+# Salereg
+### SALE REGistrator
 
-Yankit is a utility for creating macros that generate folder structures. Basically, it copies the entire folder structure (without the files) and stores it in a .json file, allowing you to create any saved structure everytime you want to make a new project.
+Salereg is a terminal application that tracks sales and ranks sellers based on their total value sold (in dollars by default, can be changed to any currency). 
+It was built using Node.JS with MongoDB as its database (you should have it installed and running for it to work.)
 
-## Why?
-Copying directories without their files using the terminal is a pain, besides, you are not even able to store the folders to create a new project later, so I always find myself making directories everytime I want to start a new project. Yankit gets rid of this hassle.
+## Stack
+
+Salereg was made using Node.JS, MongoDB and Yargs. 
 
 # Installation
-### Install via npm
-You can install yankit globally through npm (make sure you have the latest version of Node.js installed).
+### Clone this repository and install it through npm
+You can install salereg globally through npm (make sure you have the latest version of Node.js installed).
 
-`npm install yankit -g`
+`git clone `
+`npm install -g .`
 
 # Usage
-### Yanking folder structures
+### Initializing the database
 
-#### Locally:
-Yank a folder structure like this:
+Initialize the database by running this command with 5 sellers as arguments:
 
-`yankit yank -f path -n macro_name`
+`salereg initialize -1 "Seller 1" -2 "Seller 2" -3 "Seller 3" -4 "Seller 4" -5 "Seller 5"`
 
-Where "path" is the path of the folder containing the structure and "macro_name" is the name of the macro to be stored.
+Where Seller 1, 2, 3, 4 and 5 are the full names of the sellers to be registered.
 
-#### From a Git repository:
-Yank a folder structure from a Git repository:
+### Adding a sale
+Add a sale to the database by running the "add" command:
 
-`yankit yank -u url -n macro_name`
+`salereg add -d "05/03/2021" -s "John Smith" -c "Mark B" -i "Product One" -p "299.99"`
 
-Where "url" is the url of the repository and "macro_name" is the name of the macro to be stored.
+Where -d is the date, -s is the seller name, -c is the customer name, -i is the item sold and -p is the price of the sale.
+"add" adds the sale to the database and returns an updated sale list with the new one included.
 
-### Pasting a folder structure
-Paste a folder structure like this:
+### Edit a sale
+Edit a sale by running the "edit" command:
 
-`yankit paste -f path -n macro_name`
+`salereg edit -c 43944 -p price -v 399.99`
 
-Where "path" is the destined path and "macro_name" is the name of the macro to activate (e. g. yankit paste -f ./ -n cpp)
+Where -c is the ID code of the sale, -p is the parameter to be changed and -v is the desired value to be stored into the parameter.
 
-### Deleting a macro
-Delete a macro from the config file this way:
+### Delete a sale
+Delete a sale like this:
 
-`yankit unyank -n macro_name`
+`salereg delete -c 43944`
 
-Where "macro_name" is the name of the macro to delete.
-
-### List all saved macros
-List all saved file structure macros:
-
-`yankit list`
-
-This command returns a json object with all of the stored macros you have on your config file.
+Where -c is the ID code of the sale.
 
 # Configuration
-All macros are saved to a file called "data.json" on a subdirectory located in your .config (home/.config/yankit on Linux).
+The sales and sellers are saved to a MongoDB database. You can modify any default parameter by changing the code and running it with your own modifications.
 
 #### Authored by
 Carlos Dante (carloscdante)
 
 #### Dependencies
-[shellJS](https://github.com/shelljs/shelljs)
+[mongoose](https://github.com/Automattic/mongoose)
 
 [chalk](https://github.com/chalk/chalk)
 
@@ -65,4 +61,4 @@ Carlos Dante (carloscdante)
 
 #### Code (Licensed under the GPLv2)
 
-[Github](https://github.com/carloscdante/yankit)
+[Github](https://github.com/carloscdante/salereg)
