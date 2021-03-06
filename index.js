@@ -1,104 +1,105 @@
 #!/usr/bin/env node
 const yargs     = require('yargs');
-let utils       = require('./lib/utils')
-let paste       = require('./lib/paste')
-let package     = require('./package.json'),
+let utils       = require('./lib/utils'),
+    package     = require('./package.json'),
     mongoose    = require("mongoose"),
     Sale        = require('./models/sale'),
-    Seller      = require('./models/seller'),
-    seedDB      = require("./lib/seeds")
+    Seller      = require('./models/seller')
 
 mongoose.connect("mongodb://localhost/salesreg", { useNewUrlParser: true, useUnifiedTopology: true });
-seedDB();
 
-// const argv = yargs
-//     .command('yank', 'Yanks a folder structure from a given folder.', {
-//         folder: {
-//             description: 'The master folder of the structure to be yanked.',
-//             alias: 'f',
-//             type: 'string',
-//         },
-//         name: {
-//             description: 'Name of the yank to be registered in the Yankfile.',
-//             alias: 'n',
-//             type: 'string',
-//         }
-//     })
-//     .command('paste', 'Yanks a folder structure from a given folder.', {
-//         folder: {
-//             description: 'The master folder to create all directories in.',
-//             alias: 'f',
-//             type: 'string',
-//         },
-//         name: {
-//             description: 'Name of the yank to be activated.',
-//             alias: 'n',
-//             type: 'string',
-//         }
-//     })
-//     .command('unyank', 'Deletes a yank from the Yankfile.', {
-//         name: {
-//             description: 'Name of the yank to be deleted from the Yankfile.',
-//             alias: 'n',
-//             type: 'string',
-//         }
-//     })
-//     .command('list', 'List all yanks.', {})
-//     .command('gityank', 'Yanks a folder structure from a Git repository.', {
-//         url: {
-//             description: 'The repository URL.',
-//             alias: 'u',
-//             type: 'string',
-//         },
-//         name: {
-//             description: 'Name of the yank to be registered in the Yankfile.',
-//             alias: 'n',
-//             type: 'string',
-//         }
-//     })
-//     .command('$0', 'Yankit - Folder Structure Macro Utility', () => {}, (argv) => {
-//         yargs.showHelp()
-//     })
-//     .option('version', {
-//         alias: 'v',
-//         description: 'Show the version'
-//     })
-//     .help()
-//     .alias('help', 'h')
-//     .argv;
+const argv = yargs
+    .command('list', 'List all sales, ranked by seller with highest to lowest amount sold.', {})
+    .command('add', 'Adds a sale to the database.', {
+        date: {
+            description: 'Date of the given sale.',
+            alias: 'd',
+            type: 'string',
+        },
+        seller: {
+            description: "Name of the seller.",
+            alias: 's',
+            type: 'string',
+        },
+        customer: {
+            description: 'Name of the customer.',
+            alias: 'c',
+            type: 'string',
+        },
+        item: {
+            description: 'Name of the item sold.',
+            alias: 'i',
+            type: 'string',
+        },
+        price: {
+            description: 'Price of the item sold.',
+            alias: 'p',
+            type: 'number',
+        }
+    })
+    .command('edit', 'Edits a parameter from a sale.', {
+        code: {
+            description: 'Unique ID of the targeted sale (last entry on the list).',
+            alias: 'id',
+            type: 'number',
+        },
+        parameter: {
+            description: 'Parameter to be changed (e.g. sellername)',
+            alias: 'p',
+            type: 'string',
+        },
+        value: {
+            description: 'Desired value of the parameter to be changed.',
+            alias: 'v',
+            type: 'string',
+        }
+    })
+    .command('delete', 'Deletes a given sale.', {
+        code: {
+            description: 'Unique ID of the targeted sale (last entry on the list).',
+            alias: 'id',
+            type: 'number',
+        }
+    })
+    .command('$0', 'Salereg - Sale registrator', () => {}, (argv) => {
+        yargs.showHelp()
+    })
+    .option('version', {
+        alias: 'v',
+        description: 'Show the version'
+    })
+    .help()
+    .alias('help', 'h')
+    .argv;
 
-//     if(argv.version){
-//         let version = package.version
-//         //console.log('Yankit v' + version)
-//     }
+    if(argv.version){
+        let version = package.version
+    }
 
-//     if (argv._.includes('yank')) {
-//         const folder = argv.folder;
-//         const name = argv.name;
+    if (argv._.includes('list')) {
+        utils.list()
+    }
 
-//         yankit.yank(folder, name)
-//     }
+    if (argv._.includes('add')) {
+        const date = argv.date;
+        const seller = argv.seller;
+        const customer = argv.customer;
+        const item = argv.item;
+        const price = argv.price;
 
-//     if (argv._.includes('paste')) {
-//         const folder = argv.folder;
-//         const name = argv.name;
+        utils.addSale(date, seller, customer, item, price)
+    }
 
-//         paste.populate(name, folder)
-//     }
+    if (argv._.includes('edit')) {
+        const code = argv.code;
+        const parameter = argv.parameter;
+        const value = argv.value;
 
-//     if (argv._.includes('list')) {
-//         yankit.list()
-//     }
+        utils.editSale(code, parameter, value)
+    }
 
-//     if (argv._.includes('unyank')) {
-//         const name = argv.name;
+    if (argv._.includes('delete')) {
+        const code = argv.code;
 
-//         yankit.unyank(name)
-//     }
-
-//     if (argv._.includes('gityank')) {
-//         const url = argv.url;
-//         const name = argv.name;
-
-//         yankit.yankGitRepo(url, name)
-//     }
+        utils.deleteSale(code)
+    }

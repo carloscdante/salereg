@@ -1,5 +1,5 @@
 {
-  "name": "salesreg",
+  "name": "salereg",
   "version": "0.0.1",
   "description": "Sales tracking utility.",
   "main": "index.js",
