@@ -19,6 +19,6 @@
     "yargs": "^16.2.0"
   },
   "bin": {
-    "salesreg": "./index.js"
+    "salereg": "./index.js"
   }
 }

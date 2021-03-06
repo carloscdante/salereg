@@ -40,7 +40,7 @@ const argv = yargs
     .command('edit', 'Edits a parameter from a sale.', {
         code: {
             description: 'Unique ID of the targeted sale (last entry on the list).',
-            alias: 'id',
+            alias: 'c',
             type: 'number',
         },
         parameter: {
@@ -48,7 +48,7 @@ const argv = yargs
             alias: 'p',
             type: 'string',
         },
-        value: {
+        val: {
             description: 'Desired value of the parameter to be changed.',
             alias: 'v',
             type: 'string',
@@ -57,7 +57,7 @@ const argv = yargs
     .command('delete', 'Deletes a given sale.', {
         code: {
             description: 'Unique ID of the targeted sale (last entry on the list).',
-            alias: 'id',
+            alias: 'c',
             type: 'number',
         }
     })
@@ -80,6 +80,13 @@ const argv = yargs
         utils.list()
     }
 
+    if (argv._.includes('edit')) {
+        const code = argv.code
+        const parameter = argv.parameter
+        let value = argv._[1]
+        utils.editSale(code, parameter, value)
+    }
+
     if (argv._.includes('add')) {
         const date = argv.date;
         const seller = argv.seller;
@@ -88,14 +95,6 @@ const argv = yargs
         const price = argv.price;
 
         utils.addSale(date, seller, customer, item, price)
-    }
-
-    if (argv._.includes('edit')) {
-        const code = argv.code;
-        const parameter = argv.parameter;
-        const value = argv.value;
-
-        utils.editSale(code, parameter, value)
     }
 
     if (argv._.includes('delete')) {
