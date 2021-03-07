@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const yargs     = require('yargs');
-let utils       = require('./lib/utils'),
+const utils       = require('./lib/utils'),
     package     = require('./package.json'),
     mongoose    = require("mongoose"),
     Sale        = require('./models/sale'),
