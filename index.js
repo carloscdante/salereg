@@ -119,7 +119,11 @@ const argv = yargs
         const s4 = argv._[8];
         const s5 = argv._[10];
 
-        utils.initialize(s1, s2, s3, s4, s5)
+        if(s1 == undefined || s2 == undefined || s3 == undefined || s4 == undefined || s5 == undefined){
+            console.log('Not enough arguments')
+        } else{
+            utils.initialize(s1, s2, s3, s4, s5)
+        }
     }
 
     if (argv._.includes('edit')) {
