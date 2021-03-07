@@ -49,15 +49,15 @@ Where -c is the ID code of the sale, -p is the parameter to be changed and -v is
 
 Possible parameters:
 
-sellername - Seller's name.
+**sellername** - Seller's name.
 
-customername - Customer's name.
+**customername** - Customer's name.
 
-date - Date of the sale.
+**date** - Date of the sale.
 
-product - Product name.
+**product** - Product name.
 
-price - Price of the item sold.
+**price** - Price of the item sold.
 
 ### Delete a sale
 Delete a sale like this:
