@@ -8,6 +8,12 @@ It was built using Node.JS with MongoDB as its database (you should have it inst
 
 Salereg was made using Node.JS, MongoDB and Yargs. 
 
+### Observations
+
+You need to have MongoDB installed and running on your machine to use the default configurations of Salereg.
+
+Please use Mongoose version 5.11.15 or lower as there is an issue with the MongoDB driver in Mongoose 5.11.16 making every command display a warning (internal issue, not from Salereg)
+
 # Installation
 ### Clone this repository and install it through npm
 You can install salereg globally through npm (make sure you have the latest version of Node.js installed).
