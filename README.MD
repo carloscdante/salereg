@@ -2,7 +2,7 @@
 ### SALE REGistrator
 
 Salereg is a terminal application that tracks sales and ranks sellers based on their total value sold (in dollars by default, can be changed to any currency). 
-It was built using Node.JS with MongoDB as its database (you should have it installed and running for it to work.)
+It was built using Node.JS with MongoDB as its database (you should have it installed and running for salereg to work.)
 
 ## Stack
 
