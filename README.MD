@@ -47,6 +47,14 @@ Edit a sale by running the "edit" command:
 
 Where -c is the ID code of the sale, -p is the parameter to be changed and -v is the desired value to be stored into the parameter.
 
+Possible parameters:
+
+sellername - Seller's name.
+customername - Customer's name.
+date - Date of the sale.
+product - Product name.
+price - Price of the item sold.
+
 ### Delete a sale
 Delete a sale like this:
 
