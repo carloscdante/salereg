@@ -130,7 +130,12 @@ const argv = yargs
         const code = argv.code
         const parameter = argv.parameter
         let value = argv._[1]
-        utils.editSale(code, parameter, value)
+
+        if(code == undefined || parameter == undefined || value == undefined){
+            console.log("Not enough arguments")
+        } else{
+            utils.editSale(code, parameter, value)
+        }
     }
 
     if (argv._.includes('add')) {
@@ -140,7 +145,11 @@ const argv = yargs
         const item = argv.item;
         const price = argv.price;
 
-        utils.addSale(date, seller, customer, item, price)
+        if(date == undefined || seller == undefined || customer == undefined || item == undefined || price == undefined){
+            console.log('Not enough arguments')
+        } else{
+            utils.addSale(date, seller, customer, item, price)
+        }
     }
 
     if (argv._.includes('delete')) {
