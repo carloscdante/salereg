@@ -17,6 +17,7 @@ You can install salereg globally through npm (make sure you have the latest vers
 `npm install -g .`
 
 # Usage
+
 ### Initializing the database
 
 Initialize the database by running this command with 5 sellers as arguments:
@@ -58,6 +59,10 @@ List all sales (ranked by seller with the highest total sale value):
 Display the seller ranking.
 
 `salereg rank`
+
+### Note
+
+All of the commands except for "help" keep running until you exit with Ctrl+C (or the exit command of your terminal of choice).
 
 # Configuration
 The sales and sellers are saved to a MongoDB database. You can modify any default parameter by changing the code and running it with your own modifications.
