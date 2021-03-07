@@ -12,7 +12,7 @@ Salereg was made using Node.JS, MongoDB and Yargs.
 ### Clone this repository and install it through npm
 You can install salereg globally through npm (make sure you have the latest version of Node.js installed).
 
-`git clone `
+`git clone https://github.com/carloscdante/salereg`
 
 `npm install -g .`
 
